@@ -4,12 +4,13 @@ var player = document.getElementsByClassName('player')[0];
 
 
 var songs = [
+	{name: "Goliath", artist: "Graveyard", source:"music/Graveyard-Goliath.mp3"},
+	{name: "Mesmerized By Fire", artist: "Enforcer", source:"music/Enforcer-Mesmerized-By-Fire.mp3"},
+	{name: "Endless Night", artist: "Graveyard", source:"music/Graveyard-EndlessNight.mp3"},
 	{name: "Where I'm From", artist:"Digable Planets", source:"music/where-im-from.mp3"},
 	{name: "Favorite Food", artist: "Tokyo Police Club", source:"music/favourite-food.mp3"},
-//	{name: "Transgender Dysphoria Blues", artist: "Against Me!", source:"music/transgender-dysphoria-blues.mp3"},
 	{name: "Thrill of the Hunt", artist: "Kind of Like Spitting", source:"music/thrill-of-the-hunt.mp3"},
-	{name: "Graveyard", artist: "Goliath", source:"music/Graveyard-Goliath.mp3"},
-	{name: "Mesmerized By Fire", artist: "Enforcer", source:"music/Enforcer-Mesmerized-By-Fire.mp3"}
+	{name: "Transgender Dysphoria Blues", artist: "Against Me!", source:"music/transgender-dysphoria-blues.mp3"},
 ];
 
 player.addEventListener("ended", function() {
@@ -46,11 +47,10 @@ var buildPlayer = function(songs){
 	}
 
 };
+
 buildPlayer(songs);
 var buttons = document.getElementsByTagName('i');
 var butArr = document.getElementsByClassName('fa');
-
-
 
 document.querySelector('body').addEventListener('click', function(event) {
   if (event.target.tagName.toLowerCase() === 'i') {
@@ -64,8 +64,6 @@ var resetButtons = function() {
 		buttons[i].className = "fa fa-play";
 	}
 };
-
-
 
 var setHeader = function(song, isPlaying) {
 	if (isPlaying === true) {
@@ -87,8 +85,6 @@ var play = function(button, songs, index) {
 					player.id = songs[r].name;
 					player.play();
 					setHeader(songs[r], true);
-
-
 				} else {
 					player.pause();
 					player.currentTime = 0;
@@ -99,6 +95,4 @@ var play = function(button, songs, index) {
 
 			}
 		}
-
-
 };

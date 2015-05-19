@@ -1,72 +1,106 @@
-var butArr = document.getElementsByClassName('fa');
-var audArr = document.getElementsByTagName('audio');
-
 var header = document.getElementsByTagName('h1')[0];
-var songNames = document.getElementsByTagName('h2');
+var playerDiv = document.getElementsByClassName('music-player')[0];
+var player = document.getElementById('player');
 
-var playOne = document.getElementById('playOne');
-var playTwo = document.getElementById('playTwo');
-var playThree = document.getElementById('playThree');
-var playFour = document.getElementById('playFour');
-//
-//var audioOne = document.getElementById('one');
-//var audioTwo = document.getElementById('two');
-//var audioThree = document.getElementById('three');
-//var audioFour = document.getElementById('four');
 
-var stopAll = function() {
-	for (var i = 0; i < audArr.length; i++) {
-		audArr[i].pause();
+var songs = [
+	{name: "Where I'm From", artist:"Digable Planets", source:"music/where-im-from.mp3"},
+	{name: "Favorite Food", artist: "Tokyo Police Club", source:"music/favourite-food.mp3"},
+	{name: "Transgender Dysphoria Blues", artist: "Against Me!", source:"music/transgender-dysphoria-blues.mp3"},
+	{name: "Thrill of the Hunt", artist: "Kind of Like Spitting", source:"music/thrill-of-the-hunt.mp3"},
+	{name: "Graveyard", artist: "Goliath", source:"music/Graveyard-Goliath.mp3"},
+	{name: "Mesmerized By Fire", artist: "Enforcer", source:"music/Enforcer-Mesmerized By Fire.mp3"},
+
+
+];
+
+player.addEventListener("ended", function() {
+			var index;
+	     for (var i =0; i < songs.length; i++) {
+					if (player.id === songs[i].name) {
+							index = i;
+						}
+					}
+		for (var r = 0; r < butArr.length; r++) {
+				
+					if (butArr[r].id === songs[index].name) {
+						
+						play(butArr[r + 1], songs);
+						
 	}
-//	audioOne.pause();
-//	audioTwo.pause();
-//	audioThree.pause();
-//	audioFour.pause();
+}
+});
+
+
+var buildLine = function(song) {
+	var newIcon = document.createElement('i');
+	newIcon.className= 'fa fa-play';
+	newIcon.id = song.name;
+	var newHeader = document.createElement('h2');
+	newHeader.innerHTML = song.name + ' by ' + song.artist;
+	playerDiv.appendChild(newIcon);
+	playerDiv.appendChild(newHeader);
 };
+
+var buildPlayer = function(songs){
+	for(var i = 0; i < songs.length; i++) {
+		buildLine(songs[i]);
+	}
+
+};
+buildPlayer(songs);
+var buttons = document.getElementsByTagName('i');
+var butArr = document.getElementsByClassName('fa');
+
+
+
+document.querySelector('body').addEventListener('click', function(event) {
+  if (event.target.tagName.toLowerCase() === 'i') {
+     play(event.target, songs);
+
+  }
+});
 
 var resetButtons = function() {
 	for (var i = 0; i< butArr.length; i++) {
-		butArr[i].className = "fa fa-play";
+		buttons[i].className = "fa fa-play";
+	}
+};
+
+
+
+var setHeader = function(song, isPlaying) {
+	if (isPlaying === true) {
+		header.innerHTML = 'Now Playing: ' + '<i>' + song.name + '</i>';
+	} else {
+		header.innerHTML = 'Select a Song!';
 	}
 
 };
 
-var setHeader = function(button, index) {
-	header.innerHTML = 'Now Playing: ' + songNames[index].innerHTML;
+var play = function(button, songs, index) {
+		for(var r = 0; r < songs.length; r++) {
+			if (button.id === songs[r].name) {
+				if (button.classList[1] === "fa-play"){
+					resetButtons();
+					button.classList.remove("fa-play");
+					button.classList.add("fa-stop");
+					player.src = songs[r].source;
+					player.id = songs[r].name;
+					player.play();
+					setHeader(songs[r], true);
+
+
+				} else {
+					player.pause();
+					player.currentTime = 0;
+					button.classList.remove("fa-stop");
+					button.classList.add("fa-play");
+					setHeader(songs[r],false);
+				}
+
+			}
+		}
+
+
 };
-
-var play = function(button, audio, index) {
-	if (button.classList[1] === "fa-play"){
-		resetButtons();
-		stopAll();
-		audio.play();
-		setHeader(button,index);
-		button.classList.remove("fa-play");
-		button.classList.add("fa-stop");
-	} else if (button.classList[1] === "fa-stop"){
-		stopAll();
-		button.classList.remove("fa-stop");
-		button.classList.add("fa-play");
-		header.innerHTML = 'Select a Song';
-	}
-};
-
-playOne.addEventListener('click', function(){
-	play(butArr[0], audArr[0], 0);
-	
-});
-
-playTwo.addEventListener('click', function(){
-	play(butArr[1], audArr[1], 1);
-	
-});
-
-playThree.addEventListener('click', function(){
-	play(butArr[2], audArr[2], 2);
-	
-});
-
-playFour.addEventListener('click', function(){
-	play(butArr[3], audArr[3], 3);
-	
-});

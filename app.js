@@ -9,7 +9,7 @@ var songs = [
 //	{name: "Transgender Dysphoria Blues", artist: "Against Me!", source:"music/transgender-dysphoria-blues.mp3"},
 	{name: "Thrill of the Hunt", artist: "Kind of Like Spitting", source:"music/thrill-of-the-hunt.mp3"},
 	{name: "Graveyard", artist: "Goliath", source:"music/Graveyard-Goliath.mp3"},
-	{name: "Mesmerized By Fire", artist: "Enforcer", source:"music/Enforcer-Mesmerized By Fire.mp3"}
+	{name: "Mesmerized By Fire", artist: "Enforcer", source:"music/Enforcer-Mesmerized-By-Fire.mp3"}
 ];
 
 player.addEventListener("ended", function() {

@@ -1,17 +1,15 @@
 var header = document.getElementsByTagName('h1')[0];
 var playerDiv = document.getElementsByClassName('music-player')[0];
-var player = document.getElementById('player');
+var player = document.getElementsByClassName('player')[0];
 
 
 var songs = [
 	{name: "Where I'm From", artist:"Digable Planets", source:"music/where-im-from.mp3"},
 	{name: "Favorite Food", artist: "Tokyo Police Club", source:"music/favourite-food.mp3"},
-	{name: "Transgender Dysphoria Blues", artist: "Against Me!", source:"music/transgender-dysphoria-blues.mp3"},
+//	{name: "Transgender Dysphoria Blues", artist: "Against Me!", source:"music/transgender-dysphoria-blues.mp3"},
 	{name: "Thrill of the Hunt", artist: "Kind of Like Spitting", source:"music/thrill-of-the-hunt.mp3"},
 	{name: "Graveyard", artist: "Goliath", source:"music/Graveyard-Goliath.mp3"},
-	{name: "Mesmerized By Fire", artist: "Enforcer", source:"music/Enforcer-Mesmerized By Fire.mp3"},
-
-
+	{name: "Mesmerized By Fire", artist: "Enforcer", source:"music/Enforcer-Mesmerized By Fire.mp3"}
 ];
 
 player.addEventListener("ended", function() {

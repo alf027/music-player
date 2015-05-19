@@ -1,0 +1,44 @@
+* {
+	box-sizing: border-box;
+}
+
+* {
+	font-family: sans-serif;
+}
+body {
+	width: 100%;
+}
+.fa {
+	float: left;
+	font-size: 25px;
+	margin-right: 10px;
+}
+
+h2 {
+	border-bottom: 1px solid #D7D7D7;
+	padding-bottom: 20px;
+	font-weight: bold;
+}
+
+
+.music-player {
+	width: 64.5%;
+	margin: 0 auto;
+}
+header {
+	width: 65%;
+	margin: 0 auto;
+	
+}
+
+header h1 {
+	background: black;
+	color: white;
+	margin: 0px;
+	padding: 15px;
+	font-weight: normal;
+	border-radius: 3px 3px 3px 3px;
+	text-align: center;
+	font-size: 30px;
+	
+}
